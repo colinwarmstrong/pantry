@@ -27,7 +27,7 @@ class PantryTest < Minitest::Test
     assert_equal 65, pantry.stock_check('Milk')
   end
 
-  def test_shopping_list_initialize_as_an_empty_has
+  def test_shopping_list_initializes_as_an_empty_hash
     pantry = Pantry.new
 
     assert_equal ({}), pantry.shopping_list
@@ -64,7 +64,7 @@ class PantryTest < Minitest::Test
     assert_equal ({'Cheese' => 20, 'Flour' => 20}), pantry.print_shopping_list
   end
 
-  def test_pantry_initialize_with_cookbook_as_an_empty_array
+  def test_pantry_initializes_with_a_cookbook_as_an_empty_array
     pantry =  Pantry.new
 
     assert_equal [], pantry.cookbook
@@ -91,6 +91,7 @@ class PantryTest < Minitest::Test
     pantry.add_to_cookbook(recipe_3)
 
     assert_equal [recipe_1, recipe_2, recipe_3], pantry.cookbook
+    assert_equal ({'Cheese' => 20, 'Flour' => 20}), pantry.cookbook.first.ingredients
   end
 
   def test_pantry_can_return_the_recipe_names_it_can_make
