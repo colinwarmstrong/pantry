@@ -122,5 +122,30 @@ class PantryTest < Minitest::Test
   end
 
   def test_pantry_can_return_how_many_recipes_it_can_make
+    recipe_1 = Recipe.new("Cheese Pizza")
+    recipe_1.add_ingredient("Cheese", 20)
+    recipe_1.add_ingredient("Flour", 20)
+
+    recipe_2 = Recipe.new("Pickles")
+    recipe_2.add_ingredient("Brine", 10)
+    recipe_2.add_ingredient("Cucumbers", 30)
+
+    recipe_3 = Recipe.new("Peanuts")
+    recipe_3.add_ingredient("Raw nuts", 10)
+    recipe_3.add_ingredient("Salt", 10)
+
+    pantry = Pantry.new
+    pantry.add_to_cookbook(recipe_1)
+    pantry.add_to_cookbook(recipe_2)
+    pantry.add_to_cookbook(recipe_3)
+
+    pantry.restock("Cheese", 10)
+    pantry.restock("Flour", 20)
+    pantry.restock("Brine", 40)
+    pantry.restock("Cucumbers", 120)
+    pantry.restock("Raw nuts", 20)
+    pantry.restock("Salt", 20)
+
+    assert_equal ({'Pickles' => 4, 'Peanuts' => 2}), pantry.how_many_can_i_make
   end
 end
