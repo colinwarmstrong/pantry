@@ -14,4 +14,8 @@ class Pantry
   def restock(ingredient, amount)
     @stock[ingredient] += amount
   end
+
+  def add_to_shopping_list(recipe)
+    @shopping_list.merge!(recipe.ingredients)
+  end
 end
