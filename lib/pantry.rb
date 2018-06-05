@@ -18,4 +18,10 @@ class Pantry
   def add_to_shopping_list(recipe)
     @shopping_list.merge!(recipe.ingredients)
   end
+
+  def print_shopping_list
+    @shopping_list.each do |ingredient, amount|
+      puts "* #{ingredient}: #{amount}"
+    end
+  end
 end
