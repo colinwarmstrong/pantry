@@ -3,7 +3,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 
 class PantryTest < Minitest::Test
-
   def test_it_exists
     pantry = Pantry.new
 
@@ -26,6 +25,24 @@ class PantryTest < Minitest::Test
     pantry.restock('Milk', 40)
 
     assert_equal 65, pantry.stock_check('Milk')
+  end
+
+  def test_shopping_list_initialize_as_an_empty_has
+    pantry = Pantry.new
+
+    assert_equal ({}), pantry.shopping_list
+  end
+
+  def test_pantry_can_add_to_a_shopping_list
+    skip
+    recipe = Recipe.new('Cheese Pizza')
+    recipe.add_ingredient('Cheese', 20)
+    recipe.add_ingredient('Flour', 20)
+
+    pantry = Pantry.new
+    pantry.add_to_shopping_list(recipe)
+
+    assert_equal ({'Cheese' => 20, 'Flour' => 20}), pantry.shopping_list
   end
 
 
