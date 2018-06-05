@@ -94,7 +94,6 @@ class PantryTest < Minitest::Test
   end
 
   def test_pantry_can_return_the_recipe_names_it_can_make
-    skip
     recipe_1 = Recipe.new("Cheese Pizza")
     recipe_1.add_ingredient("Cheese", 20)
     recipe_1.add_ingredient("Flour", 20)
@@ -119,7 +118,7 @@ class PantryTest < Minitest::Test
     pantry.restock("Raw nuts", 20)
     pantry.restock("Salt", 20)
 
-    assert_equal ['Pickles', 'Peanuts']
+    assert_equal ['Pickles', 'Peanuts'], pantry.what_can_i_make
   end
 
   def test_pantry_can_return_how_many_recipes_it_can_make

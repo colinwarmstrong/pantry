@@ -31,4 +31,18 @@ class Pantry
     @cookbook << recipe
     recipe
   end
+
+  def valid_recipes
+    @cookbook.find_all do |recipe|
+      recipe.ingredients.all? do |ingredient, amount|
+        @stock[ingredient] > amount
+      end
+    end
+  end
+
+  def what_can_i_make
+    valid_recipes.map do |recipe|
+      recipe.name
+    end
+  end
 end
